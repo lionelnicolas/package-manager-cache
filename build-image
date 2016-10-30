@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# exit on failure
+set -e
+
+# exit on unassigned variable
+set -u
+
+# switch working directory
+cd $(dirname $0)
+
+# avoid locale issues
+export LC_ALL=C
+export LANG=C
+
+# dpkg shouldn't ask questions
+export DEBIAN_FRONTEND=noninteractive
+
+# configure apt sources
+cat >/etc/apt/sources.list <<EOF
+deb http://archive.ubuntu.com/ubuntu/ xenial          main restricted universe
+deb http://archive.ubuntu.com/ubuntu/ xenial-updates  main restricted universe
+deb http://archive.ubuntu.com/ubuntu/ xenial-security main restricted universe
+EOF
+
+# update package list
+apt-get update
+
+# install required packages
+apt-get install -y --no-install-recommends \
+	ca-certificates \
+	squid \
+	wget
+
+# clean cache and temporary files
+cd /
+apt-get clean
+rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
