@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# exit on failure
+set -e
+
+# exit on unassigned variable
+set -u
+
+# fix squid directories permissions
+install -d -o proxy -g proxy -m 755 /var/cache/squid/
+install -d -o proxy -g proxy -m 755 /var/log/squid/
+
+# generate swap cache directories
+squid -N -z
+
+# start squid
+exec squid -N
