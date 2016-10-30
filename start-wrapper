@@ -10,6 +10,11 @@ set -u
 install -d -o proxy -g proxy -m 755 /var/cache/squid/
 install -d -o proxy -g proxy -m 755 /var/log/squid/
 
+# log to stdout
+touch /var/log/squid/cache.log
+chown proxy:proxy /var/log/squid/cache.log
+tail --follow=name --retry /var/log/squid/cache.log &
+
 # generate swap cache directories
 squid -N -z
 
