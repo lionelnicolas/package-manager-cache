@@ -29,6 +29,7 @@ apt-get update
 # install required packages
 apt-get install -y --no-install-recommends \
 	ca-certificates \
+	python3-minimal \
 	squid \
 	wget
 
