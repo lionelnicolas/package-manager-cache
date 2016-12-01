@@ -3,7 +3,7 @@
 __author__    = "Lionel Nicolas <lionel.nicolas@nividic.org>"
 __copyright__ = "Copyright 2016 Lionel Nicolas"
 __license__   = "Apache License, Version 2.0"
-__version__   = "1.1"
+__version__   = "1.2"
 
 import re
 import sys
@@ -11,7 +11,7 @@ import sys
 HTTPREDIR     = re.compile('^http://httpredir\.debian\.org/.*')
 
 APT_DOMAIN    = 'http://apt.squid.internal'
-APT_RE_MIRROR = re.compile('^.*/(debian|ubuntu)/(pool/.*$)')
+APT_RE_MIRROR = re.compile('^.*/(debian|ubuntu)/(pool/.*)\.(deb|udeb|tar.gz|tar.xz|tar.bz2)$')
 
 YUM_DOMAIN    = 'http://yum.squid.internal'
 YUM_RE_MIRROR = re.compile('^.*/(x86_64/.*)\.(gz|bz2|xml|srpm|drpm|rpm)$')
@@ -33,7 +33,7 @@ while True:
         # do not rewrite calls to httpredir.debian.org, because redirection store-id will collide with the "real" one
         print ("ERR")
     elif match_apt_mirror:
-        print ("OK store-id=%s/%s/%s" % (APT_DOMAIN, match_apt_mirror.group(1), match_apt_mirror.group(2)))
+        print ("OK store-id=%s/%s/%s.%s" % (APT_DOMAIN, match_apt_mirror.group(1), match_apt_mirror.group(2), match_apt_mirror.group(3)))
     elif match_yum_mirror:
         print ("OK store-id=%s/%s.%s"    % (YUM_DOMAIN, match_yum_mirror.group(1), match_yum_mirror.group(2)))
     else:
