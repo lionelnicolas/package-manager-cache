@@ -18,9 +18,9 @@ export DEBIAN_FRONTEND=noninteractive
 
 # configure apt sources
 cat >/etc/apt/sources.list <<EOF
-deb http://archive.ubuntu.com/ubuntu/ xenial          main restricted universe
-deb http://archive.ubuntu.com/ubuntu/ xenial-updates  main restricted universe
-deb http://archive.ubuntu.com/ubuntu/ xenial-security main restricted universe
+deb http://archive.ubuntu.com/ubuntu/ bionic          main restricted universe
+deb http://archive.ubuntu.com/ubuntu/ bionic-updates  main restricted universe
+deb http://archive.ubuntu.com/ubuntu/ bionic-security main restricted universe
 EOF
 
 # update package list
