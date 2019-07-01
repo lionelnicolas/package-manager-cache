@@ -35,3 +35,10 @@ $~ apt-get update
 $~ echo 'proxy=http://$HOSTADDR:18080' >>/etc/yum.conf
 $~ yum update
 ```
+
+## License
+
+This is licensed under the Apache License, Version 2.0. Please see [LICENSE](https://github.com/lionelnicolas/package-manager-cache/blob/master/LICENSE)
+for the full license text.
+
+Copyright 2016-2019 Lionel Nicolas
