@@ -1,4 +1,4 @@
-FROM ubuntu:bionic-20190612
+FROM ubuntu:noble-20241015
 MAINTAINER Lionel Nicolas <lionel.nicolas@nividic.org>
 
 ADD build-image /tmp/build-image
