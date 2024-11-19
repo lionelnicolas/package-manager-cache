@@ -17,10 +17,13 @@ It's based on:
 docker run \
 	-it \
 	--publish 18080:18080 \
+	--ulimit nofile=65535:65535 \
 	--volume /mnt/persistent-storage/data:/var/cache/squid \
 	--volume /var/log/vmc-cacher:/var/log/squid \
 	lionelnicolas/package-manager-cache
 ```
+
+N.B. The ulimit option may be dropped if file descriptor exhaustion is not an issue on a given system.
 
 ### Configuring APT
 
